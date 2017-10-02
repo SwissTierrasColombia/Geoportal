@@ -1,0 +1,4 @@
+See:
+http://dev.openlayers.org/addins/scalebar/trunk/
+and
+http://dev.openlayers.org/addins/scalebar/trunk/examples/scalebar.html

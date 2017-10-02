@@ -1,0 +1,1978 @@
+#===========================================================================
+# allowed DPIs
+#===========================================================================
+dpis:
+#  - 254
+  - 190
+  - 127
+  - 56
+
+#===========================================================================
+# allowed Formats
+#===========================================================================
+# '*' means any formats
+formats: ['*']
+
+#===========================================================================
+# the allowed scales
+#===========================================================================
+scales:
+  - 5000
+  - 10000
+  - 25000
+  - 50000
+  - 100000
+  - 200000
+  - 500000
+  - 1000000
+  - 2000000
+  - 3000000
+  - 4000000
+
+#===========================================================================
+# the list of allowed hosts
+#===========================================================================
+hosts:
+  - !localMatch
+    dummy: true
+  - !ipMatch
+    ip: www.camptocamp.org
+  - !dnsMatch
+    host: labs.metacarta.com
+    port: 80
+  - !dnsMatch
+    host: demo.mapfish.org
+    port: 80
+  - !ipMatch
+    ip: localhost
+    port: 8080
+  - !ipMatch
+    ip: 192.168.10.72
+    port: 8080
+  - !ipMatch
+    ip: 0.0.0.0
+    mask: 0.0.0.0
+
+# the default fileName for the files downloaded from the servlet
+outputFilename: MapFish_PrintOut
+
+layouts:
+  #===========================================================================
+  A4 landscape:
+  #===========================================================================
+    # override the default outputFileName defined above
+    # outputFilename: A4_Layout
+    mainPage:
+      pageSize: A4
+      landscape: true	  
+      rotation: true
+      header:
+        height: 60
+        items:
+          - !columns
+            widths: [442, 400]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 50
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 10
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 2
+                  #backgroundColor: red
+          items:
+            - !map
+              spacingAfter: 0
+              width: 755
+              height: 420
+#        - !columns
+#          absoluteX: 750
+#          absoluteY: 495
+#          width: 30
+#          items:
+            #- !text
+            #  text: '${comment}'
+            #  spacingAfter: 5
+            #- !image
+            #   maxWidth: 30
+            #   maxHeight: 30
+            #   url: 'file:///${print_images_folder}/arrow_north_1.png'
+            #   rotation: '${rotationAngle}'
+      footer:
+        height: 50
+        items:
+          - !columns
+            widths: [500,280,60]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: left
+                text: '${note}'
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 10
+                        #backgroundColor: red
+                        paddingBottom: 5
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 10
+                     align: center
+                     vertAlign: top
+                     spacingAfter: 5
+					 
+                  - !scalebar
+                     maxSize: 250
+                     type: bar
+                     units: m
+                     barSize: 4
+                     fontSize: 7
+              - !columns
+                config:
+                   cells:
+                      - vertAlign: MIDDLE
+                items:
+                  - !image
+                       maxWidth: 30
+                       maxHeight: 30
+                       url: 'file:///${print_images_folder}/arrow_north_1.png'
+                       rotation: '${rotationAngle}'
+                       align: center
+    lastPage:
+      pageSize: A4
+      landscape: true	  
+      condition: hasLegend
+      header:
+        height: 60
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: red
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    #borderColor: green
+                    #backgroundColor: red
+            widths: [442, 400]
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 50
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                failOnBrokenUrl: false
+                iconMaxWidth: 0
+                iconMaxHeight: 400
+                maxHeight: 450
+                maxColumns: 3
+                #maxWidth: 760
+                
+				#Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                layerFontSize: 10
+                layerFont: Helvetica-Bold
+
+                #borders: true
+                horizontalAlignment: left
+                #inline: false
+                
+                reorderColumns: true
+                dontBreakItems: true
+                overflow: true
+				
+				# Controllano le immagini GetLegendGraphics
+                defaultScale: 1
+                #textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                #iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+                
+      footer:
+        height: 50
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: center
+                text: '${note}'
+
+  #===========================================================================
+  A4 portrait:
+  #===========================================================================
+    # override the default outputFileName defined above
+    # outputFilename: A4_Layout
+    mainPage:
+      pageSize: A4
+      landscape: false
+      rotation: true
+      header:
+        height: 60
+        items:
+          - !columns
+            widths: [312, 283]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                maxHeight: 50
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 10
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 2
+                  #backgroundColor: red
+          items:
+            - !map
+              spacingAfter: 0
+              width: 510
+              height: 670
+      footer:
+        height: 50
+        items:
+          - !columns
+            widths: [354,198,43]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: left
+                text: '${note}'
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 10
+                        #backgroundColor: red
+                        paddingBottom: 5
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 10
+                     align: center
+                     vertAlign: top
+                     spacingAfter: 5
+					 
+                  - !scalebar
+                     maxSize: 150
+                     type: bar
+                     units: m
+                     barSize: 4
+                     fontSize: 7
+              - !columns
+                config:
+                   cells:
+                      - vertAlign: MIDDLE
+                items:
+                  - !image
+                       maxWidth: 30
+                       maxHeight: 30
+                       url: 'file:///${print_images_folder}/arrow_north_1.png'
+                       rotation: '${rotationAngle}'
+                       align: center
+    lastPage:
+      pageSize: A4
+      landscape: false	  
+      condition: hasLegend
+      header:
+        height: 60
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: red
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    #borderColor: green
+                    #backgroundColor: red
+            widths: [312, 283]
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 50
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                failOnBrokenUrl: false
+                iconMaxWidth: 0
+                iconMaxHeight: 650
+                maxHeight: 700
+                maxColumns: 2
+                #maxWidth: 760
+                
+				#Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                layerFontSize: 10
+                layerFont: Helvetica-Bold
+
+                #borders: true
+                horizontalAlignment: left
+                #inline: false
+                
+                reorderColumns: true
+                dontBreakItems: true
+                overflow: true
+				
+				# Controllano le immagini GetLegendGraphics
+                defaultScale: 1
+                #textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                #iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+
+      footer:
+        height: 50
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: center
+                text: '${note}'
+  
+  #===========================================================================
+  Letter landscape:
+  #===========================================================================
+    # override the default outputFileName defined above
+    # outputFilename: A4_Layout
+    mainPage:
+      pageSize: LETTER
+      landscape: true	  
+      rotation: true
+      header:
+        height: 62
+        items:
+          - !columns
+            widths: [415, 411]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 51
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 10
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 2
+                  #backgroundColor: red
+          items:
+            - !map
+              spacingAfter: 0
+              width: 709
+              height: 432
+#        - !columns
+#          absoluteX: 750
+#          absoluteY: 495
+#          width: 30
+#          items:
+            #- !text
+            #  text: '${comment}'
+            #  spacingAfter: 5
+            #- !image
+            #   maxWidth: 30
+            #   maxHeight: 30
+            #   url: 'file:///${print_images_folder}/arrow_north_1.png'
+            #   rotation: '${rotationAngle}'
+      footer:
+        height: 51
+        items:
+          - !columns
+            widths: [470,263,56]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: left
+                text: '${note}'
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 10
+                        #backgroundColor: red
+                        paddingBottom: 5
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 10
+                     align: center
+                     vertAlign: top
+                     spacingAfter: 5
+					 
+                  - !scalebar
+                     maxSize: 235
+                     type: bar
+                     units: m
+                     barSize: 4
+                     fontSize: 7
+              - !columns
+                config:
+                   cells:
+                      - vertAlign: MIDDLE
+                items:
+                  - !image
+                       maxWidth: 29
+                       maxHeight: 29
+                       url: 'file:///${print_images_folder}/arrow_north_1.png'
+                       rotation: '${rotationAngle}'
+                       align: center
+    lastPage:
+      pageSize: LETTER
+      landscape: true	  
+      condition: hasLegend
+      header:
+        height: 62
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: red
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    #borderColor: green
+                    #backgroundColor: red
+            widths: [442, 400]
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 51
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                failOnBrokenUrl: false
+                iconMaxWidth: 0
+                iconMaxHeight: 411
+                maxHeight: 463
+                maxColumns: 3
+                #maxWidth: 760
+                
+				#Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                layerFontSize: 10
+                layerFont: Helvetica-Bold
+
+                #borders: true
+                horizontalAlignment: left
+                #inline: false
+                
+                reorderColumns: true
+                dontBreakItems: true
+                overflow: true
+				
+				# Controllano le immagini GetLegendGraphics
+                defaultScale: 1
+                #textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                #iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+                
+      footer:
+        height: 51
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: center
+                text: '${note}'
+  
+  #===========================================================================
+  Letter portrait:
+  #===========================================================================
+    # override the default outputFileName defined above
+    # outputFilename: A4_Layout
+    mainPage:
+      pageSize: LETTER
+      landscape: false
+      rotation: true
+      header:
+        height: 56
+        items:
+          - !columns
+            widths: [321, 266]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                maxHeight: 47
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 10
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 2
+                  #backgroundColor: red
+          items:
+            - !map
+              spacingAfter: 0
+              width: 525
+              height: 629
+      footer:
+        height: 47
+        items:
+          - !columns
+            widths: [364,204,44]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: left
+                text: '${note}'
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 10
+                        #backgroundColor: red
+                        paddingBottom: 5
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 10
+                     align: center
+                     vertAlign: top
+                     spacingAfter: 5
+					 
+                  - !scalebar
+                     maxSize: 154
+                     type: bar
+                     units: m
+                     barSize: 4
+                     fontSize: 7
+              - !columns
+                config:
+                   cells:
+                      - vertAlign: MIDDLE
+                items:
+                  - !image
+                       maxWidth: 29
+                       maxHeight: 29
+                       url: 'file:///${print_images_folder}/arrow_north_1.png'
+                       rotation: '${rotationAngle}'
+                       align: center
+    lastPage:
+      pageSize: LETTER
+      landscape: false	  
+      condition: hasLegend
+      header:
+        height: 56
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: red
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    #borderColor: green
+                    #backgroundColor: red
+            widths: [321, 291]
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 47
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                failOnBrokenUrl: false
+                iconMaxWidth: 0
+                iconMaxHeight: 611
+                maxHeight: 658
+                maxColumns: 2
+                #maxWidth: 760
+                
+				#Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                layerFontSize: 10
+                layerFont: Helvetica-Bold
+
+                #borders: true
+                horizontalAlignment: left
+                #inline: false
+                
+                reorderColumns: true
+                dontBreakItems: true
+                overflow: true
+				
+				# Controllano le immagini GetLegendGraphics
+                defaultScale: 1
+                #textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                #iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+
+      footer:
+        height: 47
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: center
+                text: '${note}'
+
+  #===========================================================================
+  Oficio landscape:
+  #===========================================================================
+    # override the default outputFileName defined above
+    # outputFilename: A4_Layout
+    mainPage:
+      pageSize: 612 936
+      landscape: true	  
+      rotation: true
+      header:
+        height: 62
+        items:
+          - !columns
+            widths: [491, 444]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 51
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 10
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 2
+                  #backgroundColor: red
+          items:
+            - !map
+              spacingAfter: 0
+              width: 839
+              height: 432
+#        - !columns
+#          absoluteX: 750
+#          absoluteY: 495
+#          width: 30
+#          items:
+            #- !text
+            #  text: '${comment}'
+            #  spacingAfter: 5
+            #- !image
+            #   maxWidth: 30
+            #   maxHeight: 30
+            #   url: 'file:///${print_images_folder}/arrow_north_1.png'
+            #   rotation: '${rotationAngle}'
+      footer:
+        height: 51
+        items:
+          - !columns
+            widths: [556,311,66]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: left
+                text: '${note}'
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 10
+                        #backgroundColor: red
+                        paddingBottom: 5
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 10
+                     align: center
+                     vertAlign: top
+                     spacingAfter: 5
+					 
+                  - !scalebar
+                     maxSize: 278
+                     type: bar
+                     units: m
+                     barSize: 4
+                     fontSize: 7
+              - !columns
+                config:
+                   cells:
+                      - vertAlign: MIDDLE
+                items:
+                  - !image
+                       maxWidth: 30
+                       maxHeight: 30
+                       url: 'file:///${print_images_folder}/arrow_north_1.png'
+                       rotation: '${rotationAngle}'
+                       align: center
+    lastPage:
+      pageSize: 612 936
+      landscape: true	  
+      condition: hasLegend
+      header:
+        height: 62
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: red
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    #borderColor: green
+                    #backgroundColor: red
+            widths: [491, 444]
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 51
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                failOnBrokenUrl: false
+                iconMaxWidth: 0
+                iconMaxHeight: 411
+                maxHeight: 463
+                maxColumns: 3
+                #maxWidth: 760
+                
+				#Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                layerFontSize: 10
+                layerFont: Helvetica-Bold
+
+                #borders: true
+                horizontalAlignment: left
+                #inline: false
+                
+                reorderColumns: true
+                dontBreakItems: true
+                overflow: true
+				
+				# Controllano le immagini GetLegendGraphics
+                defaultScale: 1
+                #textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                #iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+                
+      footer:
+        height: 51
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: center
+                text: '${note}'
+
+  #===========================================================================
+  Oficio portrait:
+  #===========================================================================
+    # override the default outputFileName defined above
+    # outputFilename: A4_Layout
+    mainPage:
+      pageSize: 612 936
+      landscape: false
+      rotation: true
+      header:
+        height: 67
+        items:
+          - !columns
+            widths: [319, 293]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                maxHeight: 53
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 10
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 2
+                  #backgroundColor: red
+          items:
+            - !map
+              spacingAfter: 0
+              width: 525
+              height: 744
+      footer:
+        height: 55
+        items:
+          - !columns
+            widths: [364,204,44]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: left
+                text: '${note}'
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 10
+                        #backgroundColor: red
+                        paddingBottom: 5
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 10
+                     align: center
+                     vertAlign: top
+                     spacingAfter: 5
+					 
+                  - !scalebar
+                     maxSize: 154
+                     type: bar
+                     units: m
+                     barSize: 4
+                     fontSize: 7
+              - !columns
+                config:
+                   cells:
+                      - vertAlign: MIDDLE
+                items:
+                  - !image
+                       maxWidth: 32
+                       maxHeight: 32
+                       url: 'file:///${print_images_folder}/arrow_north_1.png'
+                       rotation: '${rotationAngle}'
+                       align: center
+    lastPage:
+      pageSize: 612 936
+      landscape: false	  
+      condition: hasLegend
+      header:
+        height: 67
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: red
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    #borderColor: green
+                    #backgroundColor: red
+            widths: [319, 293]
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 53
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                failOnBrokenUrl: false
+                iconMaxWidth: 0
+                iconMaxHeight: 722
+                maxHeight: 778
+                maxColumns: 2
+                #maxWidth: 760
+                
+				#Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                layerFontSize: 10
+                layerFont: Helvetica-Bold
+
+                #borders: true
+                horizontalAlignment: left
+                #inline: false
+                
+                reorderColumns: true
+                dontBreakItems: true
+                overflow: true
+				
+				# Controllano le immagini GetLegendGraphics
+                defaultScale: 1
+                #textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                #iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+
+      footer:
+        height: 55
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: center
+                text: '${note}'
+  
+  #===========================================================================
+  A3 landscape:
+  #===========================================================================
+    # It is like the A4 with sizes multiplied by 1.4 
+	# override the default outputFileName defined above
+    # outputFilename: A4_Layout
+    mainPage:
+      pageSize: A3
+      landscape: true	  
+      rotation: true
+      header:
+        height: 84
+        items:
+          - !columns
+            widths: [620, 560]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 7
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 7
+                    paddingBottom: 7
+                    paddingRight: 7
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 24
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 70
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 10
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 3
+                  #backgroundColor: red
+          items:
+            - !map
+              spacingAfter: 0
+              width: 1100
+              height: 620
+#        - !columns
+#          absoluteX: 750
+#          absoluteY: 495
+#          width: 30
+#          items:
+            #- !text
+            #  text: '${comment}'
+            #  spacingAfter: 5
+            #- !image
+            #   maxWidth: 30
+            #   maxHeight: 30
+            #   url: 'file:///${print_images_folder}/arrow_north_1.png'
+            #   rotation: '${rotationAngle}'
+      footer:
+        height: 70
+        items:
+          - !columns
+            widths: [700,392,84]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 7
+                    paddingBottom: 7
+                    paddingRight: 7
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 7
+                align: left
+                text: '${note}'
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 14
+                        #backgroundColor: red
+                        paddingBottom: 7
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 14
+                     align: center
+                     vertAlign: top
+                     spacingAfter: 7
+					 
+                  - !scalebar
+                     maxSize: 350
+                     type: bar
+                     units: m
+                     barSize: 5
+                     fontSize: 10
+              - !columns
+                config:
+                   cells:
+                      - vertAlign: MIDDLE
+                items:
+                  - !image
+                       maxWidth: 42
+                       maxHeight: 42
+                       url: 'file:///${print_images_folder}/arrow_north_1.png'
+                       rotation: '${rotationAngle}'
+                       align: center
+    lastPage:
+      pageSize: A3
+      landscape: true	  
+      condition: hasLegend
+      header:
+        height: 84
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 7
+                    #backgroundColor: red
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 7
+                    paddingBottom: 7
+                    paddingRight: 7
+                    #borderWidth: 1
+                    #borderColor: green
+                    #backgroundColor: red
+            widths: [620, 560]
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 28
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 70
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                failOnBrokenUrl: false
+                iconMaxWidth: 0
+                iconMaxHeight: 550
+                maxHeight: 600
+                maxColumns: 3
+                #maxWidth: 1071
+                
+				#Added after layer                
+                layerSpace: 14
+                layerSpaceBefore: 1
+                layerFontSize: 12
+                layerFont: Helvetica-Bold
+
+                #borders: true
+                horizontalAlignment: left
+                #inline: false
+                
+                reorderColumns: true
+                dontBreakItems: true
+                overflow: true
+				
+				# Controllano le immagini GetLegendGraphics
+                defaultScale: 1
+                #textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                #iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+      footer:
+        height: 70
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 7
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 7
+                align: center
+                text: '${note}'
+
+  #===========================================================================
+  A3 portrait:
+  #===========================================================================
+    # It is like the A4 with sizes multiplied by 1.4 
+	#override the default outputFileName defined above
+    # outputFilename: A4_Layout
+    mainPage:
+      pageSize: A3
+      landscape: false
+      rotation: true
+      header:
+        height: 110
+        items:
+          - !columns
+            widths: [437, 396]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 7
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 7
+                    paddingBottom: 7
+                    paddingRight: 7
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 24
+                align: center
+                text: '${mapTitle}'
+              - !image
+                maxHeight: 75
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 0
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 3
+                  #backgroundColor: red
+          items:
+            - !map
+              spacingAfter: 0
+              width: 750
+              height: 938
+      footer:
+        height: 70
+        items:
+          - !columns
+            widths: [496,277,60]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 7
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 7
+                    paddingBottom: 7
+                    paddingRight: 7
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 7
+                align: left
+                text: '${note}'
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 14
+                        #backgroundColor: red
+                        paddingBottom: 7
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 14
+                     align: center
+                     vertAlign: top
+                     spacingAfter: 7
+					 
+                  - !scalebar
+                     maxSize: 210
+                     type: bar
+                     units: m
+                     barSize: 5
+                     fontSize: 10
+              - !columns
+                config:
+                   cells:
+                      - vertAlign: MIDDLE
+                items:
+                  - !image
+                       maxWidth: 42
+                       maxHeight: 42
+                       url: 'file:///${print_images_folder}/arrow_north_1.png'
+                       rotation: '${rotationAngle}'
+                       align: center
+    lastPage:
+      pageSize: A3
+      landscape: false	  
+      condition: hasLegend
+      header:
+        height: 84
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 7
+                    #backgroundColor: red
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 7
+                    paddingBottom: 7
+                    paddingRight: 7
+                    #borderWidth: 1
+                    #borderColor: green
+                    #backgroundColor: red
+            widths: [437, 396]
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 28
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 70
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                failOnBrokenUrl: false
+                iconMaxWidth: 0
+                iconMaxHeight: 915
+                maxHeight: 980
+                maxColumns: 2
+                #maxWidth: 1070
+                
+				#Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                layerFontSize: 10
+                layerFont: Helvetica-Bold
+
+                #borders: true
+                horizontalAlignment: left
+                #inline: false
+                
+                reorderColumns: true
+                dontBreakItems: true
+                overflow: true
+				
+				# Controllano le immagini GetLegendGraphics
+                defaultScale: 1
+                #textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                #iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+      footer:
+        height: 70
+        items:
+          - !columns
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 7
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 7
+                align: center
+                text: '${note}'

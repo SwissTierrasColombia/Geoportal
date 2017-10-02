@@ -1,0 +1,7 @@
+{
+	"success":true,
+	"result": {
+		"permissions": ["MOD_B","MOD_A"],
+		"username":"andrea"
+	}
+}

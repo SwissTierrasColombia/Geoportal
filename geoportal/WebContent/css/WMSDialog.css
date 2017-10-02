@@ -1,0 +1,125 @@
+/* Select box */
+#wmsList {
+	width: 420px;
+}
+
+#wms_addWMS {
+	margin-left: 15px;
+}
+
+#wms_grid_container {
+	padding-top: 15px;
+}
+
+/*
+Makes the height of FlexiGrid and not resizable
+*/
+.flexigrid .vGrip {
+	display: none;
+}
+
+/* ********************************** */
+/* Stile info features (dialog popup) */
+/* ********************************** */
+/* Override dialog UI */
+/* .ui-dialog-titlebar {
+	height: 13px;
+}
+.ui-dialog-content {
+	padding: 9px 0 5px 15px !important;
+} */
+.info-container {
+	overflow-y: auto;
+	max-height: 350px;
+	overflow-x: hidden;
+	width: 400px; 
+}
+.info-feat-header {
+	overflow: hidden;
+}
+.info-icon-toggle-view {
+	float: left;
+	height: 14px;
+	width: 14px;
+	padding-top: 3px;
+}
+
+.info-icon-toggle-view i {
+	font-size: 20px;
+	margin-top: -2px;	
+}
+
+/*
+* Info hyperlink
+*/
+.info-hyperlink-container {
+	padding-bottom: 15px;
+}
+
+/*
+* Info hyperlink title
+*/
+.info-hyperlink-container div {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #125CAC;
+	font-weight: 800;
+}
+
+/*
+* Info hyperlink a
+*/
+.info-hyperlink-container a {
+	
+}
+
+.info-header-text {
+	overflow: hidden;
+	padding: 0 0 0 3px;
+	font-size: 13px;
+}
+.info-icon-toggle-view img {
+	width: 14px;
+	height: 14px;
+}
+.info-feat-header {
+	padding: 3px 0 3px 2px;
+	font-weight: 800;
+}
+.info-feat-body {
+	height: auto;
+	padding: 1px 0 4px 20px;
+}
+.info-row {
+	overflow: hidden;
+	padding: 1px 0 0px 0;	
+}
+.info-icon-row {
+	float: left;
+	width: 8px;
+	height: auto;
+	padding: 0px 8px 0px 0;
+}
+.info-icon-row i {
+	font-size: 7px;
+}
+
+.info-left {
+	float: left;
+	width: 40%;
+	color: #125CAC;
+	font-weight: 800;
+}
+.info-right {
+	overflow: hidden;
+}
+.seacrh-results-layer-name {
+	font-weight: 800;
+	border-bottom: 1px solid #0077AF;
+	color: #0077AF;
+}
+.info-feat-cont {
+	padding-top: 4px;
+	padding-right: 10px;
+	padding-left: 10px;
+}

@@ -1,0 +1,24 @@
+{
+	"layersGroups" : [ 
+	{
+		"name" : "FISIO",
+		"title" : "Recursos Naturales"
+	},
+	{
+		"name" : "CARTO",
+		"title" : "Cartografia"
+	},
+	{
+		"name" : "FOR",
+		"title" : "Forestry"
+	}, {
+		"name" : "TESTWMSMULTI",
+		"title" : "TestWMSMulti"
+	}, {
+		"name" : "RIVLAKES",
+		"title" : "Rivers and Lakes"
+	}, {
+		"name" : "ADM",
+		"title" : "Administrative Boundaries"
+	} ]
+}

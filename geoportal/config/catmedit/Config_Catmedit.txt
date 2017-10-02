@@ -1,0 +1,7 @@
+* Copiare ISO19115 NOHME_ICF nella cartella template\genericEditor\gui di CatMEdit
+* Aggiungere la seguente riga
+<dcterms:isFormatOf>editor=metadataManager.metadataEdition.metadataEditionGeneric.GenericMetadataEditor[GUIFile=www_isotc211_org_2005_gmd_MD_Metadata,editorName=ISO19115 NOHME_ICF,allowUnknowns=false]</dcterms:isFormatOf>
+
+nella sezione <schemadc>
+del file /repository/standard/iso19115.xml (vicino agli altri metadata editor)
+(prima di <dcterms:isFormatOf>parser e <dcterms:isFormatOf>model).

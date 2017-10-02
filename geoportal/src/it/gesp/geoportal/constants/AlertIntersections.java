@@ -1,0 +1,14 @@
+package it.gesp.geoportal.constants;
+
+public interface AlertIntersections {
+
+	/*
+	 * ALERTS INTERSECTION WITH DEPARTMENTS
+	 */
+	String ALERTS_DEPARTMENTS_INTERSECTION = "DEPARTMENTS";
+	
+	/*
+	 * ALERTS INTERSECTION WITH MUNICIPALITIES
+	 */
+	String ALERTS_MUNICIPALITIES_INTERSECTION = "MUNICIPALITIES";
+}

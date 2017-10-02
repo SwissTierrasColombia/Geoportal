@@ -1,0 +1,78 @@
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> --%>
+<%@ page import="it.gesp.geoportal.locale.LocaleUtils, it.gesp.geoportal.services.LoginService, it.gesp.geoportal.constants.Permissions, it.gesp.geoportal.dao.entities.User, it.gesp.geoportal.services.SystemSettingService" %>
+
+<!-- JQuery -->
+<script type="text/javascript" src="lib/jquery/jquery-1.11.1.min.js"></script>
+
+<!-- JQueryUI CSS -->
+<link rel="stylesheet" href="lib/jqueryui/jquery-ui-1.10.4/css/smoothness/jquery-ui-1.10.4.custom.css" />
+
+<!-- JQueryUI -->
+<script src="lib/jqueryui/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+<!-- JQUERY Scrollbar -->
+<script src="lib/scrollbar/jquery.mCustomScrollbar.min.js"></script>
+
+<!-- MD5 -->
+<script src="lib/md5/md5.js"></script>
+
+<!-- DATATABLE -->
+<link rel="stylesheet" href="lib/datatable/datatable-1.10.2/css/jquery.dataTables.min.css" />
+<script src="lib/datatable/datatable-1.10.2/js/jquery.dataTables.min.js"></script>
+
+<!-- Style -->
+<link rel="stylesheet" href="css/globals.css" type="text/css">
+<link rel="stylesheet" href="css/admin/manager.css" type="text/css">
+
+<!-- ICONS STYLE (FONT-AWESOME + EXTRA CUSTOM FONTS ICON) -->
+<link rel="stylesheet" href="css/icons/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="css/icons/css/font-extra-icon.css" type="text/css">
+
+<!--Dragging secure Utils -->
+<script type="text/javascript" src="scripts/dragging_utils.js"></script>
+
+<!--  Validator -->
+<script type="text/javascript" src="lib/validation/validation-1.13.1/jquery.validate.min.js"></script>
+<script type="text/javascript" src="scripts/validate/Validate.js"></script>
+
+<!-- Login -->
+<script type="text/javascript" src="scripts/login/LoginUtils.js"></script>
+
+<!-- General Scripts -->
+<script type="text/javascript" src="scripts/LoadingPanel.js"></script>
+<script type="text/javascript" src="scripts/utils/Utils.js"></script>
+<script type="text/javascript" src="scripts/Services.js"></script>
+<script type="text/javascript" src="scripts/AlertDialog.js"></script>
+<script type="text/javascript" src="scripts/DialogUtils.js"></script>
+<script type="text/javascript" src="scripts/dragdrop_utils.js"></script>
+<script type="text/javascript" src="scripts/sorting_utils.js"></script>
+
+<!-- Scripts - Locale -->
+<script type="text/javascript" src="scripts/locale/LocaleManager.js"></script>
+<script type="text/javascript" src="scripts/locale/locale_en.js"></script>
+<script type="text/javascript" src="scripts/locale/locale_es.js"></script>
+
+<script type="text/javascript" src="scripts/admin/AdminMenu.js"></script>
+<script type="text/javascript" src="scripts/admin/AdminUtils.js"></script>
+
+<!--  General CSS -->
+<!-- <link rel="stylesheet" href="css/admin/general.css" type="text/css"> -->
+<script>
+<%
+	/*
+	* LANGUAGE
+	*/
+	String languageCode = LoginService.getCurrentLanguageFromSessionOrDefault(session);
+
+	/*
+	* GLOBAL VARIABLES
+	*/
+	 String jsonGlobalSettings = new SystemSettingService().getClientSystemSettingsAsJson();
+%>
+var globalSystemSettingsJson =<%=jsonGlobalSettings%>;
+var GLOBAL_SETTINGS = globalSystemSettingsJson.result;
+LocaleManager.setLocale("<%=languageCode%>");
+
+var AJAX_TIMEOUT = GLOBAL_SETTINGS.ajaxTimeout;
+
+</script>

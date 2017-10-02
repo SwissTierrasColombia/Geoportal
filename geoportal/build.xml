@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="geoportal">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+        <pathelement location="c:/Tomcat7.0/lib/annotations-api.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/catalina-ant.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/catalina-ha.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/catalina-tribes.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/catalina.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/ecj-P20140317-1600.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/el-api.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/jasper-el.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/jasper.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/jsp-api.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/postgresql-9.3-1102.jdbc41.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/servlet-api.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat-api.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat-coyote.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat-dbcp.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat-jdbc.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat-util.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/tomcat7-websocket.jar"/>
+        <pathelement location="c:/Tomcat7.0/lib/websocket-api.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="javalibs/commons-logging-1.0.4.jar"/>
+        <pathelement location="javalibs/commons-codec-1.2.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Hibernate 4.3.5.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/antlr-2.7.7.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/dom4j-1.6.1.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/hibernate-commons-annotations-4.0.4.Final.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/hibernate-core-4.3.5.Final.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/jandex-1.1.0.Final.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/javassist-3.18.1-GA.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/jboss-logging-3.1.3.GA.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/jboss-logging-annotations-1.2.0.Beta1.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/Hibernate-4.3.5/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
+    </path>
+    <path id="Postgres Jdbc Java6.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/postgres-jdbc-4/postgresql-9.4-1200.jdbc4.jar"/>
+    </path>
+    <path id="Gson 2.2.4.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/gson-2.2.4/gson-2.2.4-javadoc.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/gson-2.2.4/gson-2.2.4-sources.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/gson-2.2.4/gson-2.2.4.jar"/>
+    </path>
+    <path id="Log4j-1.2.17.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/log4j-1.2.17/log4j-1.2.17.jar"/>
+    </path>
+    <path id="Commons-Dbcp2-2.0.1.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/commons-dbcp2-2.0.1/commons-dbcp2-2.0.1.jar"/>
+    </path>
+    <path id="Commons-Pool2-2.2.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/commons-pool2-2.2/commons-pool2-2.2.jar"/>
+    </path>
+    <path id="C3P0-0.9.5pre8.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/c3p0/hibernate-c3p0-4.3.5.Final.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/c3p0/c3p0-0.9.5-pre8.jar"/>
+        <pathelement location="C:/workspace/geoportal/javalibs/c3p0/mchange-commons-java-0.2.7.jar"/>
+    </path>
+    <path id="itext-2.1.7.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/itext-2.1.7/iText-2.1.7.jar"/>
+    </path>
+    <path id="LambdaJ2.4.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/lambdaj/lambdaj-2.4-with-dependencies.jar"/>
+    </path>
+    <path id="Commons-IO-2.4.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/commons-io-2.4/commons-io-2.4.jar"/>
+    </path>
+    <path id="Commons-Lang3-3.3.2.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/commons-lang3-3.3.2/commons-lang3-3.3.2.jar"/>
+    </path>
+    <path id="HttpClient-3.1.userclasspath">
+        <pathelement location="C:/workspace/geoportal/javalibs/httpclient-3.1/commons-httpclient-3.1.jar"/>
+    </path>
+    <path id="geoportal.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Hibernate 4.3.5.userclasspath"/>
+        <path refid="Postgres Jdbc Java6.userclasspath"/>
+        <path refid="Gson 2.2.4.userclasspath"/>
+        <path refid="Log4j-1.2.17.userclasspath"/>
+        <path refid="Commons-Dbcp2-2.0.1.userclasspath"/>
+        <path refid="Commons-Pool2-2.2.userclasspath"/>
+        <path refid="C3P0-0.9.5pre8.userclasspath"/>
+        <path refid="itext-2.1.7.userclasspath"/>
+        <path refid="LambdaJ2.4.userclasspath"/>
+        <path refid="Commons-IO-2.4.userclasspath"/>
+        <path refid="Commons-Lang3-3.3.2.userclasspath"/>
+        <path refid="HttpClient-3.1.userclasspath"/>
+        <pathelement location="javalibs/commons-logging-1.0.4.jar"/>
+        <pathelement location="javalibs/commons-codec-1.2.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="geoportal.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    
+	<target name="build-war" depends="build">
+		
+		<delete dir="temporary_libs"/>
+		<mkdir dir="temporary_libs"/>
+		<copy includeemptydirs="false" todir="temporary_libs" flatten="true" overwrite="true">
+			<fileset dir="javalibs">
+				<include name="**/*.jar"/>
+				
+				<exclude name="**/commons-dbcp2-2.0.1-javadoc.jar"/>
+				<exclude name="**/commons-io-2.4-javadoc.jar"/>
+				<exclude name="**/commons-io-2.4-sources.jar"/>
+				<exclude name="**/commons-io-2.4-test-sources.jar"/>
+				<exclude name="**/commons-io-2.4-tests.jar"/>
+				<exclude name="**/commons-lang3-3.3.2-javadoc.jar"/>
+				<exclude name="**/commons-pool2-2.2-javadoc.jar"/>
+				<exclude name="**/gson-2.2.4-javadoc.jar"/>	
+				<exclude name="**/gson-2.2.4-sources.jar"/>
+				<exclude name="**/commons-io-2.4-tests.jar"/>
+				<exclude name="**/postgresql-9.3-1102.jdbc41.jar"/>
+				
+			</fileset>
+		</copy>
+		
+		<war destfile="geoportal.war" webxml="WebContent/WEB-INF/web.xml">
+		  <fileset dir="WebContent"/>
+		  <lib dir="temporary_libs">
+		  </lib>
+		  <classes dir="build/classes"/>
+		</war>
+	</target>
+              	
+  	<taskdef resource="cargo.tasks">
+  		<classpath>
+  			<pathelement location="c:/cargo/cargo-core-uberjar-1.4.14.jar" />
+  			<pathelement location="c:/cargo/cargo-ant-1.4.14.jar" />
+  			<pathelement location="c:/cargo/commons-discovery-0.5.jar" />
+  			<pathelement location="c:/cargo/commons-logging-1.2.jar" />
+  			<pathelement location="c:/cargo/jdom-2.0.6.jar" />
+  			<pathelement location="c:/cargo/jdom-2.0.6-contrib" />
+  			
+  		</classpath>
+  	</taskdef>
+    
+    <target name="redeploy-gesp" depends="build-war">
+		<cargo containerId="tomcat7x" action="redeploy" type="remote">
+		  <configuration type="runtime">
+		    <property name="cargo.hostname" value="192.168.10.72"/>
+		  	<property name="cargo.servlet.port" value="8080"/>
+		  	<!--<property name="cargo.tomcat.manager.url" value="http://192.168.10.72:8080/manager"/>-->
+		    <property name="cargo.remote.username" value="admin"/>
+		    <property name="cargo.remote.password" value="GespTomcatEngine00"/>
+		    <deployable type="war" file="geoportal.war"/>
+		  </configuration>
+		</cargo>
+    </target>
+    
+	<target name="redeploy-icf" depends="build-war">
+		<cargo containerId="tomcat7x" action="redeploy" type="remote">
+		  <configuration type="runtime">
+		    <property name="cargo.hostname" value="192.168.1.40"/>
+		  	<property name="cargo.servlet.port" value="8080"/>
+		  	<!--<property name="cargo.tomcat.manager.url" value="http://192.168.10.72:8080/manager"/>-->
+		    <property name="cargo.remote.username" value="admin"/>
+		    <property name="cargo.remote.password" value="adminIcfTomcat00"/>
+		    <deployable type="war" file="geoportal.war"/>
+		  </configuration>
+		</cargo>
+	 </target>
+</project>

@@ -1,0 +1,96 @@
+
+.manager-header {
+	height: 45px;
+	position: absolute;
+	background: rgba(36,72,87,0.8);
+	right: 0px;
+	left: 0px;
+	padding-left: 10px
+}
+
+#manager-header-text {
+	color: #FFFFFF;
+	font-style: oblique;
+	font-weight: bold;
+	font-size: 23px;
+	padding-top: 6px;
+	overflow: hidden;
+}
+
+#manager-manual-link {
+	float: right;
+  	margin: 11px 7px 0 0;
+  	padding: 0 6px 0 5px;
+  	/* border: 1px solid #373737; */
+  	font-size: 10px;
+  	color: #626262
+}
+
+
+#grid-container {
+	padding: 10px 30px 30px 30px;
+	background: #FFFFFF;
+	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.container {
+	position: absolute;
+	top: 50px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.menu-left-manager {
+	padding: 5px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 240px;
+	border-right: 1px solid #8C8C8C;
+	background: #fff;
+	border-top: 0;
+}
+
+.center-container {
+	position: absolute;
+	left: 252px;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	overflow: auto;
+}
+
+.menu-left-manager .menu-left-manager-item {
+	padding: 4px;
+	cursor: pointer;
+	border: 1px solid #dedede;
+	margin: 6px;
+	
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.menu-left-manager .menu-left-manager-item:hover {
+	color: #938F8F;
+}
+
+.active_item {
+/* 	background: #4D6A75; */
+/* 	color: #FFFFFF; */
+	background: white;
+/* 	color: #4D6A75; */
+	color: #000;
+	font-weight: 900;
+}
+
+.manager-toolbar {
+	overflow: hidden;
+	padding: 4px;
+	border-bottom: 1px solid #8C8C8C;
+}

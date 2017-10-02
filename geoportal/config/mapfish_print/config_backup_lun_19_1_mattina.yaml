@@ -1,0 +1,355 @@
+#===========================================================================
+# allowed DPIs
+#===========================================================================
+dpis:
+  - 254
+  - 190
+  - 127
+  - 56
+
+#===========================================================================
+# allowed Formats
+#===========================================================================
+# '*' means any formats
+formats: ['*']
+
+#===========================================================================
+# the allowed scales
+#===========================================================================
+scales:
+  - 25000
+  - 50000
+  - 100000
+  - 200000
+  - 500000
+  - 866685
+  - 1000000
+  - 2000000
+  - 4000000
+  - 8000000
+  - 16000000
+  - 32000000
+  - 64000000
+
+#===========================================================================
+# the list of allowed hosts
+#===========================================================================
+hosts:
+  - !localMatch
+    dummy: true
+  - !ipMatch
+    ip: www.camptocamp.org
+  - !dnsMatch
+    host: labs.metacarta.com
+    port: 80
+  - !dnsMatch
+    host: demo.mapfish.org
+    port: 80
+  - !ipMatch
+    ip: localhost
+    port: 8080
+  - !ipMatch
+    ip: 192.168.10.72
+    port: 8080
+  - !ipMatch
+    ip: 0.0.0.0
+    mask: 0.0.0.0
+
+# the default fileName for the files downloaded from the servlet
+outputFilename: MapFish_PrintOut
+
+layouts:
+  #===========================================================================
+  A4 portrait:
+  #===========================================================================
+    # override the default outputFileName defined above
+#    outputFilename: A4_Layout
+    mainPage:
+      rotation: true
+      pageSize: A4
+      header:
+        height: 50
+        items:
+          - !text
+            font: Helvetica
+            fontSize: 30
+            align: center
+            text: '${mapTitle}'
+      items:
+        - !map
+          spacingAfter: 30
+          width: 440
+          height: 483
+        - !text
+          text: '${comment}'
+          spacingAfter: 30
+        - !scalebar
+           maxSize: 150
+           type: bar
+           units: m
+        - !image
+           maxWidth: 30
+           maxHeight: 30
+           url: 'file:///${print_images_folder}/arrow_north_1.png'
+           rotation: '${rotationAngle}'
+      footer:
+        height: 30
+        items:
+          - !columns
+            items:
+              - !text
+                backgroundColor: #FF0000
+                align: center
+                text: Mosef
+              - !text
+                align: center
+                text: 'Page ${pageNum}'
+
+    lastPage:
+      pageSize: A4
+      landscape: true	  
+      header:
+        height: 50
+        items:
+          - !text
+            font: Helvetica
+            fontSize: 20
+            align: center
+            text: 'Leyenda test'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                borders: false
+                horizontalAlignment: center
+                inline: false
+                # Controllano tutta la legenda
+                maxHeight: 5
+                maxWidth: 700
+                maxColumns: 5
+                #reorderColumns: true
+                dontBreakItems: true
+                #overflow: true
+				# Controllano le immagini GetLegendGraphics
+                iconMaxWidth: 70
+                iconMaxHeight: 0
+                defaultScale: 1
+                textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+                backgroundColor: white
+                layerFontSize: 10
+      footer:
+        height: 30
+        items:
+          - !columns
+            items:
+              - !text
+                #backgroundColor: #FF0000
+                align: center
+                text: Mosef
+              - !text
+                align: right
+                text: 'Page ${pageNum}'
+
+  #===========================================================================
+  A4 landscape:
+  #===========================================================================
+    # override the default outputFileName defined above
+#    outputFilename: A4_Layout
+    mainPage:
+      pageSize: A4
+      landscape: true	  
+      rotation: true
+      header:
+        height: 60
+        items:
+          - !columns
+            widths: [310, 285]
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: title
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: white
+                    #borderWidth: 1
+                    vertAlign: MIDDLE
+				
+                  # Right cell of the header: logos
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    #borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 20
+                align: center
+                text: '${mapTitle}'
+              - !image
+                #maxWidth: 300
+                maxHeight: 50
+                align: right				
+                url: 'file:///${print_images_folder}/icf_logo_white.jpg'
+
+      items:
+        - !text
+          text: ''
+          spacingAfter: 10
+        - !columns
+          absoluteX: 750
+          absoluteY: 495
+          width: 30
+          items:
+            #- !text
+            #  text: '${comment}'
+            #  spacingAfter: 5
+            - !image
+               maxWidth: 30
+               maxHeight: 30
+               url: 'file:///${print_images_folder}/arrow_north_1.png'
+               rotation: '${rotationAngle}'
+        - !columns
+          config:
+              borderWidth: 1
+              borderColor: black
+              cells:
+                #Padding for the map
+                - padding: 2
+                  #backgroundColor: red
+          items:
+            - !map
+              #spacingAfter: 5
+              width: 755
+              height: 420
+      footer:
+        height: 50
+        items:
+          - !columns
+            # 3 columns, same width
+            config:
+                borderWidth: 1
+                borderColor: black
+                cells:
+                  # Left cell of the header: Localization
+                  - row: 0
+                    col: 0
+                    padding: 5
+                    #backgroundColor: green
+                    vertAlign: MIDDLE
+				
+                  # Central cell of the header: Scale
+                  - row: 0
+                    col: 1
+                    paddingTop: 5
+                    paddingBottom: 5
+                    paddingRight: 5
+                    borderWidth: 1
+                    # borderColor: green
+                    #backgroundColor: red
+                  # Right cell of the header: description
+                  - row: 0
+                    col: 2
+                    #backgroundColor: blue
+            items:
+              - !text
+                font: Helvetica-Oblique
+                fontSize: 5
+                align: center
+                text: 'Los limites politicos-administrativos de Honduras y limites XXX utilizados en sta mapa, fueron tomados del Sistema Nacional de Informacion Territorial (SINIT): la inclusion de los mismos se ha realizado esclusivamente para relacionarlos con los elementos cartograficos rapresentados en este mapa. Los resultadosobtenidos de la cobertura forestal y uso de la tierra fueron XXX a partir del procesamiento y clasificacion de imagenes satellitares del sensor RapidEye de los anos 2012 y 2013. El presente mapa XXX indica una escala grafica, solo es para XXX, el cluas en su formato original fue elaborado a una escala minima de 1:25.000.Todos los derechos de reproduccion del presente mapa corresponden al Instituto Nacional de Conservacion y Desarrollo Forestal Areas Protegidas y Vida Silvestre, 2014. Republica de Honduras, Centroamerica.'
+     
+              - !columns
+			    # http://trac.mapfish.org/trac/mapfish/ticket/173
+				# Specifies max number of columns before adding a new line.
+                nbColumns: 1
+                config:
+                   cells:
+                      # Cells heights (scale + scalebar)
+                      - maxHeight: 15
+                        #backgroundColor: red
+                        row: 0
+                items:                   
+                  - !text
+                     text: Escala
+                     fontSize: 10
+                     align: center
+                     vertAlign: top
+                  - !scalebar
+                     maxSize: 250
+                     type: bar
+                     units: m
+                     barSize: 4
+                     fontSize: 7
+              - !text
+                align: center
+                text: 'Description cartografica Page ${pageNum}'
+
+    lastPage:
+      pageSize: A4
+      landscape: true	  
+      header:
+        height: 50
+        items:
+          - !text
+            font: Helvetica
+            fontSize: 20
+            align: center
+            text: 'Leyenda test'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                borders: false
+                horizontalAlignment: center
+                inline: false
+                # Controllano tutta la legenda
+                maxHeight: 5
+                maxWidth: 700
+                maxColumns: 5
+                #reorderColumns: true
+                dontBreakItems: true
+                #overflow: true
+				# Controllano le immagini GetLegendGraphics
+                iconMaxWidth: 70
+                iconMaxHeight: 0
+                defaultScale: 1
+                textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+                backgroundColor: white
+                layerFontSize: 10
+      footer:
+        height: 30
+        items:
+          - !columns
+            items:
+              - !text
+                #backgroundColor: #FF0000
+                align: center
+                text: Mosef
+              - !text
+                align: right
+                text: 'Page ${pageNum}'

@@ -1,0 +1,126 @@
+<%@ page import="it.gesp.geoportal.locale.LocaleUtils, it.gesp.geoportal.services.LoginService, it.gesp.geoportal.constants.Permissions, it.gesp.geoportal.dao.entities.User" %>
+<%@page import="it.gesp.geoportal.dao.dto.SystemSettingDTO"%>
+<%@page import="it.gesp.geoportal.services.SystemSettingService"%>
+<%@page import="it.gesp.geoportal.locale.LocaleUtils, it.gesp.geoportal.services.LoginService,it.gesp.geoportal.constants.Permissions, it.gesp.geoportal.dao.entities.User, it.gesp.geoportal.services.SystemSettingService" %>
+
+<!--  Google Maps -->
+<script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
+
+<!-- JQuery -->
+<script type="text/javascript" src="lib/jquery/jquery-1.11.1.min.js"></script>
+
+<!-- JQueryUI CSS -->
+<link rel="stylesheet" href="lib/jqueryui/jquery-ui-1.10.4/css/smoothness/jquery-ui-1.10.4.custom.css" />
+
+<!-- JQueryUI -->
+<script src="lib/jqueryui/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+<!-- JQuery Validator -->
+<script type="text/javascript" src="lib/validation/validation-1.13.1/jquery.validate.min.js"></script>
+
+<!--  JQuery Dialog Extend -->
+<script src="lib/jqueryui_dialogextend/jquery.dialogextend.min.js"></script>
+
+<!-- JQUERY Scrollbar -->
+<script src="lib/scrollbar/jquery.mCustomScrollbar.min.js"></script>
+
+<!-- XML to JSON -->
+<script src="lib/json_xml/jquery.xml2json.js"></script>
+
+<!-- DATATABLE -->
+<link rel="stylesheet" href="lib/datatable/datatable-1.10.2/css/jquery.dataTables.min.css" />
+<script src="lib/datatable/datatable-1.10.2/js/jquery.dataTables.min.js"></script>
+
+<!-- FlexiGrid 1.1 -->
+<script type="text/javascript" src="lib/flexigrid/js/flexigrid.js"></script>
+<link rel="stylesheet" href="lib/flexigrid/css/flexigrid.css" type="text/css">
+
+<!-- Pro4J -->
+<script type="text/javascript" src="lib/proj4js/1.1.0/lib/proj4js-compressed.js"></script>
+<script type="text/javascript" src="scripts/proj4js/LoadProj4jsHelper.js"></script>
+
+<!-- Openlayers -->
+<script type="text/javascript" src="lib/openlayers/OpenLayers-2.13.1/OpenLayers.js"></script>
+<link rel="stylesheet" href="lib/openlayers/OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+
+<!-- Openlayers Addins-->
+<!-- Scalebar -->
+<script type="text/javascript" src="lib/openlayers/addins/ScaleBar/ScaleBar.js"></script>
+<link rel="stylesheet" href="lib/openlayers/addins/ScaleBar/theme/default/scalebar-thin.css" type="text/css" />
+
+<!-- LoadingPanel -->
+<script type="text/javascript" src="lib/openlayers/addins/LoadingPanel/LoadingPanel.js"></script>
+<link rel="stylesheet" href="lib/openlayers/addins/LoadingPanel/LoadingPanel.css" type="text/css" />
+
+<!-- Scripts - Locale -->
+<script type="text/javascript" src="scripts/locale/LocaleManager.js"></script>
+<script type="text/javascript" src="scripts/locale/locale_en.js"></script>
+<script type="text/javascript" src="scripts/locale/locale_es.js"></script>
+
+<script>
+<%
+/*
+* LANGUAGE
+*/
+String languageCode = LoginService.getCurrentLanguageFromSessionOrDefault(session);
+%>
+LocaleManager.setLocale("<%=languageCode%>");
+
+<%
+/*
+* LOGIN MANAGEMENT 
+*/
+User currentUser = LoginService.getLoggedInUserFromSession(session);
+if (currentUser == null) {
+%>
+var loggedUser = null;
+<% } else { %>
+var loggedUser = '<%=currentUser.getUsername() %>';
+<% } %>
+
+<%
+/*
+* GLOBAL VARIABLES
+*/
+ String jsonGlobalSettings = new SystemSettingService().getClientSystemSettingsAsJson();
+ String jsonGeneralSettings = new SystemSettingService().getGeneralSettingsAsJson();
+%>
+
+var globalSystemSettingsJson =<%=jsonGlobalSettings%>;
+var generalSystemSettingsJson =<%=jsonGeneralSettings%>;
+var GLOBAL_SETTINGS = globalSystemSettingsJson.result;
+var GENERAL_SETTINGS = generalSystemSettingsJson.result;
+
+var removedLB = GENERAL_SETTINGS.informationMessage.replace(/(\r\n|\n|\r)/gm,"");
+var PRINT_SETTINGS = {informationMessage: $(removedLB).text()};
+
+var OL_PROXY_URL = GLOBAL_SETTINGS.proxyUrl;
+var GEONETWORK_URL = GLOBAL_SETTINGS.geonetworkUrl;
+var GEOSERVER_URL = GLOBAL_SETTINGS.geoserverUrl;
+var PRINT_SERVLET_URL = GLOBAL_SETTINGS.printServletUrl;
+var AJAX_TIMEOUT = GLOBAL_SETTINGS.ajaxTimeout;
+var PRINT_TIMEOUT = GLOBAL_SETTINGS.ajaxPrintTimeout;
+//GLOBAL_SETTINGS.maxNumberOfSelectedLayers = 50;
+
+var BING_APIKEY = "AvbXwmU3ypHf9T2k4Om98rT1nhailgDX5OxK4KR8e8DFHrCz5ymnCjWbig-ko7En";
+
+var adminPanelWindow = null;
+
+function openAdminPanelWindow() {
+	if (adminPanelWindow != null && !adminPanelWindow.closed) {
+		adminPanelWindow.focus();
+	}
+	else{
+		adminPanelWindow = window.open('./admin', '_blank');
+	} 	
+}
+
+</script>
+
+<!-- ICONS STYLE (FONT-AWESOME + EXTRA CUSTOM FONTS ICON) -->
+<link rel="stylesheet" href="css/icons/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="css/icons/css/font-extra-icon.css" type="text/css">
+
+<link rel="stylesheet" href="css/geoportal_styles.css" type="text/css" />
+
+<script type="text/javascript" src="scripts/geoportal_min.js"></script>

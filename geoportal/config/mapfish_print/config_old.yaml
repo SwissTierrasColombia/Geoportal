@@ -1,0 +1,188 @@
+#===========================================================================
+# allowed DPIs
+#===========================================================================
+dpis:
+  - 254
+  - 190
+  - 127
+  - 56
+
+#===========================================================================
+# allowed Formats
+#===========================================================================
+# '*' means any formats
+formats: ['*']
+
+#===========================================================================
+# the allowed scales
+#===========================================================================
+scales:
+  - 25000
+  - 50000
+  - 100000
+  - 200000
+  - 500000
+  - 866685
+  - 1000000
+  - 2000000
+  - 4000000
+  - 8000000
+  - 16000000
+  - 32000000
+  - 64000000
+
+#===========================================================================
+# the list of allowed hosts
+#===========================================================================
+hosts:
+  - !localMatch
+    dummy: true
+  - !ipMatch
+    ip: www.camptocamp.org
+  - !dnsMatch
+    host: labs.metacarta.com
+    port: 80
+  - !dnsMatch
+    host: demo.mapfish.org
+    port: 80
+  - !ipMatch
+    ip: localhost
+    port: 8080
+  - !ipMatch
+    ip: 192.168.10.72
+    port: 8080
+  - !ipMatch
+    ip: 0.0.0.0
+    mask: 0.0.0.0
+
+# the default fileName for the files downloaded from the servlet
+outputFilename: MapFish_PrintOut
+
+layouts:
+  #===========================================================================
+  A4 portrait:
+  #===========================================================================
+    # override the default outputFileName defined above
+#    outputFilename: A4_Layout
+    mainPage:
+      rotation: true
+      pageSize: A4
+      header:
+        height: 50
+        items:
+          - !text
+            font: Helvetica
+            fontSize: 30
+            align: right
+            text: '${mapTitle}'
+      items:
+        - !map
+          spacingAfter: 30
+          width: 440
+          height: 483
+        - !text
+          text: '${comment}'
+          spacingAfter: 30
+      footer:
+        height: 30
+        items:
+          - !columns
+            items:
+              - !text
+                backgroundColor: #FF0000
+                align: center
+                text: Mosef
+              - !text
+                align: right
+                text: 'Page ${pageNum}'
+  #===========================================================================
+  A4 landscape:
+  #===========================================================================
+    # override the default outputFileName defined above
+#    outputFilename: A4_Layout
+    mainPage:
+      pageSize: A4
+      landscape: true	  
+      rotation: true
+      header:
+        height: 50
+        items:
+          - !text
+            font: Helvetica
+            fontSize: 20
+            align: center
+            text: '${mapTitle}'
+      items:
+        - !map
+          spacingAfter: 5
+          width: 755
+          height: 390
+        - !text
+          text: '${comment}'
+          spacingAfter: 5
+      footer:
+        height: 20
+        items:
+          - !columns
+            items:
+              - !text
+                #backgroundColor: #FF0000
+                align: center
+                text: Mosef
+              - !text
+                align: right
+                text: 'Page ${pageNum}'
+    lastPage:
+      pageSize: A4
+      landscape: true	  
+      header:
+        height: 50
+        items:
+          - !text
+            font: Helvetica
+            fontSize: 20
+            align: center
+            text: 'Leyenda test'
+      items:
+         - !legends
+                backgroundColor: #FFFFFF
+                borders: false
+                horizontalAlignment: center
+                inline: false
+                # Controllano tutta la legenda
+                maxHeight: 5
+                maxWidth: 700
+                maxColumns: 5
+                #reorderColumns: true
+                dontBreakItems: true
+                #overflow: true
+				# Controllano le immagini GetLegendGraphics
+                iconMaxWidth: 70
+                iconMaxHeight: 0
+                defaultScale: 1
+                textPadding: 0 0 0 0
+                #textMaxWidth: 200
+                #textMaxHeight: 10				
+                iconPadding: 0 0 0 0
+                #columnMargin: 2
+                #classIndentation: 3
+                #Added after layer                
+                layerSpace: 10
+                layerSpaceBefore: 1
+                #Spazio dopo la classe 
+                #classSpace: 20
+                #columnMaxWidth: 200
+                backgroundColor: white
+                layerFontSize: 10
+      footer:
+        height: 30
+        items:
+          - !columns
+            items:
+              - !text
+                #backgroundColor: #FF0000
+                align: center
+                text: Mosef
+              - !text
+                align: right
+                text: 'Page ${pageNum}'

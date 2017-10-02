@@ -1,0 +1,30 @@
+#mapSettingAdminContainer {
+	padding: 15px;	
+}
+#mapSettingAdminContainer .header {
+	font-weight: 800;
+	padding: 6px;
+	border: 1px solid #E5E5E5;
+	background: #F9F9F9;
+	
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+#projection-input,
+#units-input,
+#default-zoomlevel-input,
+#centerx-input,
+#centery-input,
+#dots-per-inch-input
+{
+	width: 360px !important;
+}
+
+#mapSettingAdminContainer .itemform {
+	border-bottom: none !important;	
+}
+#mapSettingAdminContainer .itemform div:first-child {
+	width: 300px !important;
+	padding-top: 7px;
+}

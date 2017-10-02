@@ -1,0 +1,3 @@
+http://docs.geoserver.org/latest/en/user/services/wfs/outputformats.html#wfs-outputformat-shapezip
+http://gis.stackexchange.com/questions/95329/shapefile-output-customization-via-wfs-in-geoserver
+https://github.com/geoserver/geoserver/blob/646480bcc069464bc45600a5f4c59e4293513b77/src/wfs/src/main/java/org/geoserver/wfs/response/shapezip.ftl

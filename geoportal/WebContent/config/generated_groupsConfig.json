@@ -1,0 +1,46 @@
+{
+  "layersGroups": [
+    {
+      "name": 1,
+      "code": 1,
+      "background": false,
+      "title": "Group A",
+      "position": 2
+    },
+    {
+      "name": 3,
+      "code": 3,
+      "background": false,
+      "title": "group B",
+      "position": 3
+    },
+    {
+      "name": 12,
+      "code": 12,
+      "background": false,
+      "title": "test2",
+      "position": 4
+    },
+    {
+      "name": 2,
+      "code": 2,
+      "background": true,
+      "title": "background",
+      "position": 1
+    },
+    {
+      "name": 13,
+      "code": 13,
+      "background": false,
+      "title": "test3333f",
+      "position": 6
+    },
+    {
+      "name": 15,
+      "code": 15,
+      "background": false,
+      "title": "eddys",
+      "position": 5
+    }
+  ]
+}

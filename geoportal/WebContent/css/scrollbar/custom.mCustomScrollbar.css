@@ -1,0 +1,29 @@
+._mCS_1 .mCustomScrollBox .mCSB_container {
+	margin-right: 7px;
+	padding-bottom: 2px;
+}
+
+._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+	background: #5E6681;
+}
+
+.mCSB_dragger_bar {
+	background: #5E6681 !important;	
+}
+
+.mCSB_draggerContainer {
+	background: #FFFFFF;
+}
+
+.mCSB_scrollTools .mCSB_draggerRail {
+	width: 0px;
+}
+.mCustomScrollBox .mCSB_scrollTools {
+	width: 4px;
+}
+.mCSB_draggerContainer {
+	background: none;
+}
+#g-wms-list .mCSB_container {
+	margin-right: 15px;
+}

@@ -1,0 +1,7 @@
+INSTALLATION INSTRUCTIONS
+
+1) install Node.js
+2) install Grunt (npm install -g grunt-cli)
+3) open a shell to the current folder and install the grunt plugins (npm install). 
+   This will install the plugins as specified in the package.json configuration file.
+4) run "grunt" to execute the tasks defined in the Gruntfile.js
