@@ -1,0 +1,159 @@
+{
+	"tools":{
+		"scalebar" : {
+			"enabled": true,
+			"displaySystem": "metric",
+			"divisions": 2,
+			"subdivisions":2,
+			"singleLine": false
+		},
+		"loadingPanel" : {
+			"enabled": true
+		},
+		"mouseCoordinates": {
+			"enabled": true,
+			"numDigits": 3
+		},
+		"measures" : {
+			"enabled": true
+		}
+	},
+	"map":{
+        "projection": "EPSG:900913",
+        "units": "m",
+        "maxExtent": [
+            -20037508.34, -20037508.34,
+            20037508.34, 20037508.34
+        ],
+        "center": [-9663959.000000, 1672805.000000],
+        "zoom": 8,
+        "layers": [
+        	{
+            "source": "osm",
+            "title": "OSM",
+            "name": "OSM",
+            "group": "background",
+            "enabled": true
+        	},
+        	{
+            "source": "google",
+            "title": "Google ROADMAP",
+            "name": "ROADMAP",
+            "group": "background"
+        	},
+        	{
+            "source": "google",
+            "title": "Google SATELLITE",
+            "name": "SATELLITE",
+            "group": "background"
+        	},
+        	{
+            "source": "google",
+            "title": "Google Hybrid",
+            "name": "HYBRID",
+            "group": "background"
+        	},
+        	{
+            "source": "google",
+            "title": "Google TERRAIN",
+            "name": "TERRAIN",
+            "group": "background"
+        	},
+        	{
+        	"source": "wms",
+        	"title": "Guyana CTR",
+        	"url": "http://192.168.10.240:8081/geoserver/Guyana/wms",
+ 	        "name": "Guyana:merged_all_tif",
+ 	        "wmsOptions" : {
+ 	        	"format": "image/jpeg",
+ 	        	"transparent" : false
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": true,
+                "singleTile": false
+ 	        },
+            "group": "background"
+        	},
+        	{
+        	"source": "wms_multi_layer",
+        	"url": "http://192.168.14.249:8080/geoserver/mosef/wms",
+ 	        "layerData": [
+ 	        	{"name": "mosef:cobertura_forestal",
+	 	         "title": "cobertura_forestal",
+	 	         "enabled": false
+	 	        },
+	 	        {"name":"mosef:microcuencas_declaradas_2012",
+	 	         "title": "microcuencas_declaradas_2012",
+	 	         "enabled": true
+	 	        }
+ 	        ],
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false
+ 	        },
+            "group": "layers"
+        	},
+        	{
+        	"source": "wms",
+        	"title": "cobertura forestal",
+        	"url": "http://192.168.14.249:8080/geoserver/mosef/wms",
+ 	        "name": "mosef:cobertura_forestal",
+ 	        "enabled": false,
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false
+ 	        },
+            "group": "layers"
+        	},
+        	{
+        	"source": "wms",
+        	"title": "microcuencas_declaradas_2012",
+        	"url": "http://192.168.14.249:8080/geoserver/mosef/wms",
+ 	        "name": "mosef:microcuencas_declaradas_2012",
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": true
+ 	        },
+            "group": "layers"
+        	},
+        	{
+        	"source": "wms",
+        	"title": "areas_protegidas_abril_2012",
+        	"url": "http://192.168.14.249:8080/geoserver/mosef/wms",
+ 	        "name": "mosef:areas_protegidas_abril_2012",
+ 	        "enabled": true,
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false
+ 	        },
+            "group": "layers"
+        	}
+        ]
+    }
+}

@@ -1,0 +1,202 @@
+{
+	"tools":{
+		"scalebar" : {
+			"enabled": true,
+			"displaySystem": "metric",
+			"divisions": 2,
+			"subdivisions":2,
+			"singleLine": false
+		},
+		"loadingPanel" : {
+			"enabled": false
+		},
+		"mouseCoordinates": {
+			"enabled": true,
+			"numDigits": 3
+		},
+		"measures" : {
+			"enabled": true
+		}
+	},
+	"map":{
+        "projection": "EPSG:900913",
+        "units": "m",
+        "maxExtent": [
+            -20037508.34, -20037508.34,
+            20037508.34, 20037508.34
+        ],
+        "center": [-9663959.000000, 1672805.000000],
+        "zoom": 8
+     },
+	"layers": [
+        	{
+            "source": "osm",
+            "title": "OSM",
+            "name": "OSM",
+            "group": "background",
+            "enabled": true
+        	},
+        	{
+            "source": "google",
+            "title": "Google ROADMAP",
+            "name": "ROADMAP",
+            "group": "background"
+        	},
+        	{
+            "source": "google",
+            "title": "Google SATELLITE",
+            "name": "SATELLITE",
+            "group": "background"
+        	},
+        	{
+            "source": "google",
+            "title": "Google Hybrid",
+            "name": "HYBRID",
+            "group": "background"
+        	},
+        	{
+            "source": "google",
+            "title": "Google TERRAIN",
+            "name": "TERRAIN",
+            "group": "background"
+        	},
+        	{
+            "source": "bing",
+            "title": "Bing Aerial",
+            "name": "AERIAL",
+            "group": "background"
+        	},
+			{
+            "source": "bing",
+            "title": "Bing Roads",
+            "name": "ROAD",
+            "group": "background"
+        	},
+			{
+            "source": "bing",
+            "title": "Bing Hybrid",
+            "name": "HYBRID",
+            "group": "background"
+        	},
+        	
+        	{
+        	"source": "wms",
+        	"title": "Areas Protegidas 2008",
+        	"url": "http://geo-mosef.gesp.it/geoserver/mosef/wms",
+ 	        "name": "m2501va042008_hn",
+ 	        "enabled": false,
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png8",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false
+ 	        },
+            "group": "FISIO"
+        	},
+        	
+        	{
+        	"source": "wms",
+        	"title": "Cobertura Forestal 1995",
+        	"url": "http://geo-mosef.gesp.it/geoserver/mosef/wms",
+        	"cacheUrl" : "http://geo-mosef.gesp.it/geoserver/gwc/service/wms",
+ 	        "name": "n2402va001995_hn",
+ 	        "enabled": false,
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png8",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false
+ 	        },
+            "group": "FISIO"
+        	},
+        	
+        	{
+        	"source": "wms",
+        	"title": "Ecosistema vegetales",
+        	"url": "http://geo-mosef.gesp.it/geoserver/mosef/wms",
+        	"cacheUrl" : "http://geo-mosef.gesp.it/geoserver/gwc/service/wms",
+ 	        "name": "n2502va002001_hn",
+ 	        "enabled": false,
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png8",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false
+ 	        },
+            "group": "FISIO"
+        	},
+        	
+        	{
+        	"source": "wms",
+        	"title": "Microcuencas Protegidas 2009",
+        	"url": "http://geo-mosef.gesp.it/geoserver/mosef/wms",
+        	"cacheUrl" : "http://geo-mosef.gesp.it/geoserver/gwc/service/wms",
+ 	        "name": "m2504va022009_hn",
+ 	        "enabled": true,
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png8",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false
+ 	        },
+            "group": "FISIO"
+        	},
+        	{
+        	"source": "wms",
+        	"title": "LIMITES DEPARTAMENTALES-POLIGONO",
+        	"url": "http://geo-mosef.gesp.it/geoserver/mosef/wms",
+        	"cacheUrl" : "http://geo-mosef.gesp.it/geoserver/gwc/service/wms",
+ 	        "name": "m1102va001970_hn",
+ 	        "enabled": false,
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png8",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false,
+                "opacity" : 0.5
+ 	        },
+            "group": "CARTO"
+        	},
+        	
+        	{
+        	"source": "wms",
+        	"title": "LIMITES MUNICIPALES 2001-POLIGONO",
+        	"url": "http://geo-mosef.gesp.it/geoserver/mosef/wms",
+        	"name": "m1103va002001_hn",
+        	"cacheUrl" : "http://geo-mosef.gesp.it/geoserver/gwc/service/wms",
+        	"enabled": false,
+ 	        "wmsOptions" : {
+ 	        	"format": "image/png",
+ 	        	"transparent" : true
+ 	        },
+ 	        "olOptions" : {
+ 	         	"buffer": 0,
+                "displayOutsideMaxExtent": true,
+                "isBaseLayer": false,
+                "singleTile": false
+ 	        },
+            "group": "CARTO"
+        	}
+        	       	
+        ]
+}

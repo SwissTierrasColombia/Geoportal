@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;http_proxy_mod&apos; to &apos;http_prox&apos;" description="Rename resource &apos;http_proxy_mod&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/http_proxy_mod" name="http_prox" stamp="1506979023350" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;http_prox&apos; to &apos;http_proxy&apos;" description="Rename resource &apos;http_prox&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/http_prox" name="http_proxy" stamp="1506979036051" updateReferences="true"/>
+</session>

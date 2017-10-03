@@ -1,0 +1,7 @@
+.gradle/
+build/
+buildSrc/.gradle/
+buildSrc/build/
+deploy.sh
+*.class
+/bin

@@ -1,0 +1,10 @@
+{ "wms_list" : [
+	{
+	"url" : "http://192.168.10.72:8080/geoserver/mosef/wms",
+	"name": "Mosef - http://192.168.10.72:8080/geoserver/mosef/wms"
+	},
+	{
+	"url" : "http://192.168.10.240:8081/geoserver/Guyana/wms",
+	"name": "Guyana - http://192.168.10.240:8081/geoserver/Guyana/wms"
+	}	
+] }

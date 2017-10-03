@@ -1,0 +1,26 @@
+.legendLabel {
+	display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.legendItem {
+	padding-bottom: 6px;
+}
+.legendItem {
+	padding-left: 20px;
+	padding-top: 2px;
+	clear: both;	
+}
+.legendItem img {
+	width: auto !important;
+	height: auto !important;
+}
+.item-toggle-legend {
+	float: right;
+	width: 16px;
+	font-size: 11px;	
+}
+.item-toggle-legend-multi {
+	padding-top: 1px;
+}

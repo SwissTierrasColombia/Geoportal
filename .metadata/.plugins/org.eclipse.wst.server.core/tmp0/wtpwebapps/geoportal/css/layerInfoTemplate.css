@@ -1,0 +1,54 @@
+#layer_info_template_container .litc_header {
+	background: #F0F0F0;
+	padding: 5px;
+}
+
+#layer_info_template_description {
+	font-weight: normal !important;
+	padding-top: 10px;
+	padding-bottom: 10px
+} 
+
+#layer_info_template_container .litc_item {
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#layer_info_template_container .litc_title {
+	float: left;
+	width: 150px;
+	font-weight: bold;
+}
+
+#layer_info_template_legend_container {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-top: 10px;
+}
+
+.litc_value {
+	overflow: hidden;	
+}
+
+.litc_button {
+	background: #f2f2f2;
+	border: 1px solid #a2a2a2;
+	padding: 3px;
+	cursor: pointer;
+	margin-left: 4px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	width: 85px;
+}
+
+.litc_info_row {
+	padding-bottom: 5px;	
+}
+
+#layer_info_template_info_container {
+	padding: 5px;
+}

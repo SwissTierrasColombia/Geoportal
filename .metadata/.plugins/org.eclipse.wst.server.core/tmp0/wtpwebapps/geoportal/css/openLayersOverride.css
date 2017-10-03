@@ -1,0 +1,52 @@
+/* Zoom Control */
+div.olControlZoom {
+	position: absolute;
+/* 	top: 100px; */
+	top: 0px;
+	left: 10px;
+	/* right: 30px; */
+	background: rgba(255, 255, 255, 0.4);
+	border-radius: 4px;
+	padding: 2px;
+}
+
+.olControlLoadingPanel {
+	left: 0;
+	right: 0;
+	width: auto;
+}
+
+div.olControlZoom {
+	background-color: transparent;
+}
+
+div.olControlZoom a {
+	background-image:url('../images/zoom_out.png');
+	height: 44px;
+	width: 44px;
+	background-color: transparent;
+	color: transparent;
+}
+div.olControlZoom a:hover {
+	background-image:url('../images/zoom_out.png');
+	height: 44px;
+	width: 44px;
+	background-color: transparent;
+	color: transparent;
+}
+
+.olControlOverviewMapElement {
+	padding: 0px 0px 0px 0px;
+	background-color: white;
+	-moz-border-radius: 1em 0 0 0;
+}
+
+.olControlZoomIn {
+	background-image:url('../images/zoom_in.png') !important;
+}
+/* SCALEBAR */
+.olControlScaleBar {
+ 	left: 5px;
+/* 	right: 0px; */
+	bottom: 25px !important;
+}

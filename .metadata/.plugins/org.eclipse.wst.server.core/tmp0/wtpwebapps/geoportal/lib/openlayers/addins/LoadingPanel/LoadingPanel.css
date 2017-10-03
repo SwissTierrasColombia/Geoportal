@@ -1,0 +1,25 @@
+.olControlLoadingPanel {
+    background-image: url("loading_gray.gif");
+    background-color: none;
+    position: fixed;
+    left: 100px;
+/*     top: 100px; */
+	top: 0px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    background-position:center;
+    background-repeat:no-repeat;
+    display: none;
+}
+/* .olControlLoadingPanel { */
+/* 	            background-image:url(../theme/default/img/loading.gif); */
+/* 	            margin-left: 30%; */
+/* 	            margin-top: 50%; */
+/* 	            position: relative; */
+/* 	            width: 195px; */
+/* 	            height: 11px; */
+/* 	            background-position:center; */
+/* 	            	            background-repeat:no-repeat; */
+/* 	            display: none; */
+/* 	        } */
