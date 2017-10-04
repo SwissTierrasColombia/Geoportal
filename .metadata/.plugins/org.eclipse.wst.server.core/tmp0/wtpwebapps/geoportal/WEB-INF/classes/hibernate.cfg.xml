@@ -15,7 +15,7 @@
 		 
 		<property name="hibernate.connection.username">geoportal_user</property>
 		<property name="hibernate.connection.password">geoportal_user</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/geoportal</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/geoportal_new</property>
  		
 		 <!-- Use the C3P0 connection pool. -->  
          

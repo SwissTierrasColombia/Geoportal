@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;EPSG900913.js&apos; to &apos;EPSG900913.js&apos;&#x0A;- Original project: &apos;geoportal&apos;&#x0A;- Destination element: &apos;EPSG900913.js&apos;&#x0A;- Original element: &apos;EPSG900913.js&apos;" description="Copy file" element1="WebContent/lib/proj4js/1.1.0/lib/defs/EPSG900913.js" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1507137861594" target="/geoportal/WebContent/lib/proj4js/1.1.0/lib/defs/EPSG900913.js" units="0" version="1.0"/>
+</session>

@@ -78,8 +78,18 @@ function LayerConfigCatalog() {
 				lc = new LayerConfig(layerConfig_i);
 				
 				if(layerConfig_i.url) {
-					//var name = lc.getName();
-					var describeFeatureObjectFor_url = describeFeatureList[layerConfig_i.url];
+					
+					var describeFeatureObjectFor_url = null;
+					/*
+					 * If the describe feature list is specified, let's try
+					 * to get the describefeatureObject url.
+					 * Otherwise the object is left null.
+					 */
+					if (!Utils.isNullOrUndefined(describeFeatureList)) {
+						describeFeatureObjectFor_url = describeFeatureList[layerConfig_i.url];
+					}
+					//var describeFeatureObjectFor_url = describeFeatureList[layerConfig_i.url];
+					
 					lc = LayerConfigCatalog.addDescribeFeatureToLayerConfig(lc, describeFeatureObjectFor_url);
 					
 //					/*

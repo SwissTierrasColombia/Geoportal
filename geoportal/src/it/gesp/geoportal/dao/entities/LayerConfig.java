@@ -30,6 +30,12 @@ import com.google.gson.GsonBuilder;
 @Table(name = "layerconfigs", uniqueConstraints = { @UniqueConstraint(columnNames = { "id_layer_config" }) })
 public class LayerConfig {
 
+	/*
+	 * Default tilesize 
+	 */
+	private final static int DEFAULT_TILESIZE_X = 256;
+	private final static int DEFAULT_TILESIZE_Y = 256;
+	
 	private int idLayerConfig;
 	private String options;
 	private String olOptions;
@@ -88,12 +94,17 @@ public class LayerConfig {
 		Gson gson = new GsonBuilder().setExclusionStrategies(new GeoportalGsonExclusionStrategy()).create();
 		LayerConfigOLOptionsDTO lcoDTO = gson.fromJson(olOptions, LayerConfigOLOptionsDTO.class);
 		
-		//Tile size 512 by default
-		if (lcoDTO.getSingleTile() == false){
-			List<Integer> tileSize =  new ArrayList<Integer>();
-			tileSize.add(512);
-			tileSize.add(512);
-			lcoDTO.setTileSize(tileSize);
+		if (lcoDTO.getSingleTile() == false)  {
+			/*
+			 * Set default tile size if not specified
+			 */
+			if (lcoDTO.getTileSize() == null) {
+				List<Integer> tileSize =  new ArrayList<Integer>();
+				tileSize.add(DEFAULT_TILESIZE_X);
+				tileSize.add(DEFAULT_TILESIZE_Y);
+				lcoDTO.setTileSize(tileSize);
+			}
+			
 		}
 		
 		return lcoDTO;

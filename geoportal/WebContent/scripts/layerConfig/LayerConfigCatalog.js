@@ -88,7 +88,8 @@ function LayerConfigCatalog() {
 					if (!Utils.isNullOrUndefined(describeFeatureList)) {
 						describeFeatureObjectFor_url = describeFeatureList[layerConfig_i.url];
 					}
-
+					//var describeFeatureObjectFor_url = describeFeatureList[layerConfig_i.url];
+					
 					lc = LayerConfigCatalog.addDescribeFeatureToLayerConfig(lc, describeFeatureObjectFor_url);
 					
 //					/*
