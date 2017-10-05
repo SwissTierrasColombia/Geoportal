@@ -490,6 +490,75 @@ public class LayerGroupService {
 		
 		session.flush();
 	}
+	/**
+	 *Method for activate or deactivate layer by default
+	 *@author Agencia implementacion 
+	 * @throws Exception 
+	 */
+	public void activateLayerByDefault(int layerId, int layerGroupId, boolean isCurrentlyActive) throws Exception{
+		Session session = null;
+		try {
+			session = SessionFactoryManager.openSession();
+			Transaction tx = session.beginTransaction();
+			
+			try {
+				LayerRepository lr = new LayerRepository();
+				LayerGroupRepository lgr = new LayerGroupRepository();
+				LayerGroupLayerRepository lglr = new LayerGroupLayerRepository();
+				
+				/*
+				 * Test that the layer and the layerGroup exist
+				 */
+				Layer layer = lr.getById(session, Layer.class, layerId);
+				LayerGroup layerGroup = lgr.getById(session, LayerGroup.class,
+						layerGroupId);
+
+				if (layer == null) {
+					throw OperationInvalidException.createMissingIdExeption(
+							"Layer", layerId);
+				}
+
+				if (layerGroup == null) {
+					throw OperationInvalidException.createMissingIdExeption(
+							"LayerGroup", layerGroupId);
+				}
+
+				/*
+				 * Check if association exists
+				 */
+				LayerGroupLayer existingLgl = lglr
+						.getLayerGroupsLayerByGroupIdAndLayerId(session,
+								layerGroupId, layerId);
+
+				if (existingLgl == null) {
+					// Association does not exist
+					throw new OperationInvalidException("EXC_LAYER_REORDER_ERROR_NOT_ASSOCIATED_TO_LAYERGROUP", "The layer is not associated to group.");
+				}
+				
+				
+				/*
+				 * Association already existing: change enabled
+				 */
+				existingLgl.setEnabled(!isCurrentlyActive);
+				
+				lglr.save(session, existingLgl);
+				
+				session.flush();
+				
+				tx.commit();
+				
+			} catch (Exception x) {
+				// log.debug(x);
+				tx.rollback();
+				throw x;
+			}
+		} catch (Exception x) {
+			log.debug(x);
+			throw x;
+		} finally {
+			session.close();
+		}
+	}
 	
 	public void reorderLayerInGroup(int layerGroupId, int layerId, long newPosition) throws Exception {
 		

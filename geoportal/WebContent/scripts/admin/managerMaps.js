@@ -235,6 +235,8 @@ var mMaps = {
 			
 			// Disable move-up and move-down icon to first layer and last layer of group
 			mMaps.setMoveOrderIconsToGroup(domGroup);
+			// Set icons for activate or deactivate layer by default at init
+//			mMaps.setButtonActivateLayer(domGroup);
 		});
 		
 		this.requests.groupsDone = true;
@@ -393,7 +395,8 @@ var mMaps = {
 		
 		rowLayerGroup.append(
 			this.getDomButtonDeleteLayer(),
-			this.getDomButtonOrderLayer()
+			this.getDomButtonOrderLayer(),
+			this.getDomButtonActivateLayer(layer.enabled)
 		);
 		if (layer.baseLayer)
 			rowLayerGroup.addClass("layer-background");
@@ -438,6 +441,44 @@ var mMaps = {
 			// - param 1: layer item
 			// - param 2: group item
 			mMaps.deleteLayerFromGroup($(this).closest(".row-layer-group"), $(this).closest(".row-groups-all"));
+		});
+		
+		return deleteButton;
+	},
+	
+	/**
+	 * Return dom element button activate layer in TOC
+	 */
+	getDomButtonActivateLayer: function(layerEnabled) {
+		
+		var classEnabled = "";
+		if(layerEnabled)
+			classEnabled = "fa-check-square-o";
+		else
+			classEnabled = "fa-square-o";
+		
+		var deleteButton = 
+
+			$("<div>").attr({
+			"class": "row-layer-group-act-delete localizedElement", 
+			"data-locale_key": "Manager_Map_RemoveLayerGroup", 
+			"data-locale_ref": "title"
+		}).append($("<i>").attr({"class": "fa " + classEnabled + " fa-2x"}))
+		.click(function(){
+			var itemLayer = $(this).find("i");
+			var layerId = $(this).parent().data("layerId");
+			var layerGroupId = $(this).closest(".row-groups-all").data("groupId");
+			
+			var itemChecked = itemLayer.hasClass("fa-check-square-o");
+			
+			if(itemChecked){
+				itemLayer.removeClass("fa-check-square-o");
+				itemLayer.addClass("fa-square-o");
+			}else{
+				itemLayer.addClass("fa-check-square-o");
+				itemLayer.removeClass("fa-square-o");
+			}
+			mMaps.requests.activateLayerByDefault(layerId,layerGroupId,itemChecked);
 		});
 		
 		return deleteButton;
@@ -531,6 +572,8 @@ var mMaps = {
 		
 		return;
 	},
+	
+	//setButtonActivateLayer(domGroup)
 
 	/**
 	 *  Open dialog to insert a new group
@@ -697,6 +740,18 @@ var mMaps = {
 				mMaps.updateData();
 			}, null);				
 		}, 
+		
+		activateLayerByDefault: function(layerId, layerGroupId, isLayerActive){
+			Utils.ajaxCall(Services.getMapConfigUrl(), "POST", "json", {
+				oper : "activateLayerByDefault",
+				layerId : layerId,
+				layerGroupId : layerGroupId,
+				isLayerActive : isLayerActive
+			}, function() {
+				mMaps.updateData();
+			}, null);
+		},
+		
 		reorderGroup: function(layerGroupId, position) {
 			Utils.ajaxCall(Services.getMapConfigUrl(), "POST", "json", {
 				oper: "reorderLayerGroup",
