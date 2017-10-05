@@ -46,6 +46,7 @@ public class LayerConfig {
 	
 	private String sldUrl;
 	private boolean sldOverrideEnabled;
+	private String attrMapping;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,6 +91,7 @@ public class LayerConfig {
 	@Transient
 	public LayerConfigOLOptionsDTO getParsedOlOptions() {
 		String olOptions = this.getOlOptions();
+		String attrMapping = this.getAttrMapping();
 
 		Gson gson = new GsonBuilder().setExclusionStrategies(new GeoportalGsonExclusionStrategy()).create();
 		LayerConfigOLOptionsDTO lcoDTO = gson.fromJson(olOptions, LayerConfigOLOptionsDTO.class);
@@ -105,6 +107,10 @@ public class LayerConfig {
 				lcoDTO.setTileSize(tileSize);
 			}
 			
+		}
+		
+		if(attrMapping!=null && !attrMapping.isEmpty()){
+			lcoDTO.setAttrMapping(attrMapping);
 		}
 		
 		return lcoDTO;
@@ -154,4 +160,15 @@ public class LayerConfig {
 	public void setCacheWorkspace(String cacheWorkspace) {
 		this.cacheWorkspace = cacheWorkspace;
 	}
+	
+	@Column(name="attr_mapping", nullable = true)
+	public String getAttrMapping() {
+		return attrMapping;
+	}
+
+	public void setAttrMapping(String attrMapping) {
+		this.attrMapping = attrMapping;
+	}
+	
+	
 }
