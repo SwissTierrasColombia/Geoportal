@@ -1,0 +1,217 @@
+{
+  "general": {
+    "showInitialMessage": false,
+    "initialMessage": "Bienvenidos al Geoportal de la IDE para la Administracion de Tierras (piloto)"
+  },
+  "tools": {
+    "scalebar": {
+      "enabled": true,
+      "displaySystem": "metric",
+      "divisions": 2,
+      "subdivisions": 2,
+      "singleLine": false
+    },
+    "loadingPanel": {
+      "enabled": false
+    },
+    "mouseCoordinates": {
+      "enabled": true,
+      "numDigits": 0
+    },
+    "measures": {
+      "enabled": false
+    },
+    "overview": {
+      "enabled": true
+    }
+  },
+  "map": {
+    "projection": "EPSG:3857",
+    "units": "m",
+    "defaultExtent": [
+      -74.161,
+      4.558,
+      -74.088,
+      4.599
+    ],
+    "maxScale": 1066.364791776453,
+    "customScales": [
+      1000,
+      2000,
+      5000,
+      10000,
+      25000,
+      50000,
+      100000,
+      150000,
+      200000,
+      250000,
+      500000,
+      1000000,
+      2000000,
+      3000000,
+      4000000
+    ],
+    "dotsPerInch": 90.7142857142857
+  },
+  "layers": [
+    {
+      "group": "34",
+      "groupName": "Capas de fondo",
+      "source": "osm",
+      "title": "OSM",
+      "name": "OSM",
+      "position": 1,
+      "enabled": false
+    },
+    {
+      "url": "http://geo.proadmintierra.info/geoserver/interlis/wms",
+      "wmsOptions": {
+        "format": "image/png",
+        "transparent": true
+      },
+      "olOptions": {
+        "buffer": 1,
+        "displayOutsideMaxExtent": true,
+        "isBaseLayer": false,
+        "singleTile": false,
+        "opacity": 1.0,
+        "tileSize": [
+          256,
+          256
+        ]
+      },
+      "group": "42",
+      "description": "Malla Vial de la ciudad de Bogotá D.C.",
+      "responsible": "IDECA",
+      "external": true,
+      "downloadable": false,
+      "wfsSearchEnabled": false,
+      "showInfoDialog": true,
+      "cacheUrl": "https://geo.proadmintierra.info/geoserver/gwc/service/wms",
+      "cacheWorkspace": "interlis",
+      "attributeNameForInfo": "",
+      "referenceDate": "",
+      "groupName": "Cartografía",
+      "source": "wms",
+      "title": "Malla Vial Integral",
+      "name": "mvi",
+      "position": 1,
+      "enabled": true
+    },
+    {
+      "url": "http://serviciosgis.catastrobogota.gov.co/arcgis/services/Mapa_Referencia/mapa_base_3857/MapServer/WMSServer",
+      "wmsOptions": {
+        "format": "image/png",
+        "transparent": true
+      },
+      "olOptions": {
+        "buffer": 0,
+        "displayOutsideMaxExtent": true,
+        "isBaseLayer": false,
+        "singleTile": true,
+        "opacity": 1.0
+      },
+      "group": "53",
+      "description": "",
+      "responsible": "",
+      "external": false,
+      "downloadable": false,
+      "wfsSearchEnabled": false,
+      "showInfoDialog": false,
+      "attributeNameForInfo": "",
+      "referenceDate": "",
+      "groupName": "ESRI",
+      "source": "wms",
+      "title": "Municipio",
+      "name": "28",
+      "position": 2,
+      "enabled": false
+    },
+    {
+      "url": "http://serviciosgis.catastrobogota.gov.co/arcgis/services/Imagenes/Ortho2014/MapServer/WMSServer",
+      "wmsOptions": {
+        "format": "image/png",
+        "transparent": true
+      },
+      "olOptions": {
+        "buffer": 0,
+        "displayOutsideMaxExtent": true,
+        "isBaseLayer": false,
+        "singleTile": false,
+        "opacity": 1.0,
+        "tileSize": [
+          256,
+          256
+        ]
+      },
+      "group": "53",
+      "description": "",
+      "responsible": "",
+      "external": false,
+      "downloadable": false,
+      "wfsSearchEnabled": false,
+      "showInfoDialog": false,
+      "attributeNameForInfo": "",
+      "referenceDate": "",
+      "groupName": "ESRI",
+      "source": "wms",
+      "title": "Ortofoto_CatastroRGB_2014-EPSG3857.img",
+      "name": "0",
+      "position": 3,
+      "enabled": false
+    },
+    {
+      "url": "http://serviciosgis.catastrobogota.gov.co/arcgis/services/Mapa_Referencia/mapa_base_3857/MapServer/WMSServer",
+      "wmsOptions": {
+        "format": "image/png",
+        "transparent": true
+      },
+      "olOptions": {
+        "buffer": 0,
+        "displayOutsideMaxExtent": true,
+        "isBaseLayer": false,
+        "singleTile": true,
+        "opacity": 1.0
+      },
+      "group": "53",
+      "description": "",
+      "responsible": "",
+      "external": false,
+      "downloadable": false,
+      "wfsSearchEnabled": false,
+      "showInfoDialog": false,
+      "attributeNameForInfo": "",
+      "referenceDate": "",
+      "groupName": "ESRI",
+      "source": "wms",
+      "title": "Cabecera",
+      "name": "2",
+      "position": 1,
+      "enabled": false
+    }
+  ],
+  "layersGroups": [
+    {
+      "name": "34",
+      "code": "34",
+      "background": true,
+      "title": "Capas de fondo",
+      "position": 1
+    },
+    {
+      "name": "42",
+      "code": "42",
+      "background": false,
+      "title": "Cartografía",
+      "position": 10
+    },
+    {
+      "name": "53",
+      "code": "53",
+      "background": false,
+      "title": "ESRI",
+      "position": 11
+    }
+  ]
+}

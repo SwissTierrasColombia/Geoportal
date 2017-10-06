@@ -41,6 +41,8 @@ LoadLayersUtils.loadLayersFromConfig = function(groups, layersConfig, onSuccessF
 	// Load them
 	LoadLayersUtils.loadBaseLayersFromConfig(baseLayerConfigOrdered);
 	
+	var liList = [];
+	
 	/*
 	 * Filter standard layers (non-baselayers) from config and load them
 	 * Order and load standard layers
@@ -63,13 +65,35 @@ LoadLayersUtils.loadLayersFromConfig = function(groups, layersConfig, onSuccessF
 		var orderedLayersConfigForGrp = layersConfigForGrp.sort(function(a,b){
 			return (a.getPosition() > b.getPosition()) ? -1 : (a.getPosition() < b.getPosition()) ? 1 : 0;
 		});
-
+		
+		//List all layers sould be turned on when start
+		var localLi = [];
 		$.each(orderedLayersConfigForGrp, function(index, layerConfig) {
-			LoadLayersUtils.loadStdLayer(layerConfig, null);
+			var li = LoadLayersUtils.loadStdLayer(layerConfig);
+			if(layerConfig.isEnabled()){
+				localLi.push(li);
+			}
 		});
 		
+		localLi.reverse();
+		liList = liList.concat(localLi);
+		
 	});
-
+	
+	if(liList.length > GLOBAL_SETTINGS.maxNumberOfSelectedLayers){
+		liList = liList.slice(0,GLOBAL_SETTINGS.maxNumberOfSelectedLayers);
+		AlertDialog.createOkDefaultDialog(
+			LocaleManager.getKey("AlertDialog_Warning_Title"), 
+			LocaleManager.getKey("Page_Menu_Selected_Layers_Max_Size")
+		);
+	}
+	
+	liList.reverse();
+	$.each(liList, function(idx, li){
+		LayerMenu.selectAndOpenLayerInMenu(li);
+	});
+	
+	
 	// Call onSuccessFunction
 	if (!Utils.isNullOrUndefined(onSuccessFunction)) {
 		onSuccessFunction();
@@ -82,29 +106,32 @@ LoadLayersUtils.loadLayersFromConfig = function(groups, layersConfig, onSuccessF
  * richiama la funzione di success
  * 
  * @param layerConfig
- * @param onSuccessFunction
- * @param hasDelete
  */
-LoadLayersUtils.loadStdLayer = function(layerConfig, onSuccessFunction, hasDelete) {
+LoadLayersUtils.loadStdLayer = function(layerConfig) {
 	
 	var olLayer = CreateLayer.createOLLayer(layerConfig);
 	var enabled = false;
+	var hasDelete = false;
 	var hasLegend = true;
+	var li;
 	if (Utils.isTrue(layerConfig.isEnabled())) {
 		enabled = true;
 	}
 	if (layerConfig.getSource() == "wms") {
-		LayerMenu.addToMenu(layerConfig, olLayer, enabled, hasDelete, hasLegend);
+		li = LayerMenu.addToMenu(layerConfig, olLayer, enabled, hasDelete, hasLegend);
+		/*if(layerConfig.isEnabled()){
+			LayerMenu.selectAndOpenLayerInMenu(li);
+		}*/
 	}
 
 	else if (layerConfig.getSource() == "wms_multi_layer") {
 		LayerMenu.addMultiLayerToMenu(layerConfig, olLayer, hasDelete);
 	}
 
-	if (!Utils.isNullOrUndefined(onSuccessFunction)) {
+	/*if (!Utils.isNullOrUndefined(onSuccessFunction)) {
 		onSuccessFunction();
-	}
-
+	}*/
+	return li;
 };
 
 /*
