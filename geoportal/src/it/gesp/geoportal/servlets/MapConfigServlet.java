@@ -434,6 +434,54 @@ public class MapConfigServlet extends HttpServlet {
 				ServletUtils.writeAndFlush(log, w, jsonRes);
 			}
 			/*
+			 * ACTIVATE LAYER BY DEFAULT 
+			 */
+			else if("activateLayerByDefault".equalsIgnoreCase(oper)){
+				/*
+				 * Check whether the current user has the appropriate permission
+				 */
+				if (!LoginService.hasPermission(currentUser,Permissions.MAP_CONFIG_ADMIN)) {
+					// User does not have the permission
+					jsonRes = GeoportalResponse.createErrorResponse(userMessages.getString("USER_DOES_NOT_HAVE_PERMISSION"));
+					ServletUtils.writeAndFlush(log, w, jsonRes);
+					return;
+				}
+				
+				int layerId = -1;
+				
+				try {
+					String layerIdStr = request.getParameter("layerId");
+					layerId = Integer.parseInt(layerIdStr);
+				} catch (Exception x) {
+					log.debug("Error parsing layerId parameter");
+					throw new DataInvalidException();
+				}
+				
+				//layerGroupId
+				int layerGroupId = -1;
+				try {
+					String layerGroupIdStr = request.getParameter("layerGroupId");
+					layerGroupId = Integer.parseInt(layerGroupIdStr);
+				} catch (Exception x) {
+					log.debug("Error parsing layerGroupId parameter");
+					throw new DataInvalidException();
+				}
+				
+				boolean isLayerActive = false;
+				try{
+					String isLayerActiveStr = request.getParameter("isLayerActive");
+					isLayerActive = Boolean.parseBoolean(isLayerActiveStr);
+				}catch(Exception x){
+					log.debug("Error parsing isLayerActive parameter");
+					throw new DataInvalidException();
+				}
+				
+				layerGroupService.activateLayerByDefault(layerId, layerGroupId, isLayerActive);
+				
+				jsonRes = GeoportalResponse.createSuccessResponse(null, true);
+				ServletUtils.writeAndFlush(log, w, jsonRes);
+			}
+			/*
 			 * REORDER LAYER IN A GROUP
 			 */
 			else if ("reorderLayerInLayerGroup".equalsIgnoreCase(oper)) {

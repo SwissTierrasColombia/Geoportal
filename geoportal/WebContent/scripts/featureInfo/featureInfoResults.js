@@ -223,7 +223,12 @@ var featureInfoResults = {
 			var layerTitle = selectedLayer.data("title");
 			var layerId = selectedLayer.data("id");
 			var layerConfig = catalog.getLayerConfigById(layerId);
-			
+			var attrMapping = {};
+			try{
+				attrMapping = JSON.parse(layerConfig.getOpenLayersOptions().attrMapping);
+			}catch(e){
+				console.error(e);
+			}
 			var identifier = "";
 			
 			var attributeNameForInfo = layerConfig.getAttributeNameForInfo();
@@ -305,7 +310,13 @@ var featureInfoResults = {
 						$("<i>").attr({"class": "fa fa-circle"})
 				);
 				
-				var field = $("<div>").attr({"class": "info-left"}).text(key);
+				var field = $("<div>").attr({"class": "info-left"}).text(function(){
+					if(attrMapping.hasOwnProperty('labels') && attrMapping['labels'].hasOwnProperty(key)){
+						return attrMapping['labels'][key];
+					}else{
+						return key;
+					}				
+				});
 				var valueField = $("<div>").attr({"class": "info-right word-wrap"}).text(value);
 				
 				rowInfo.append(iconRow, field, valueField);
